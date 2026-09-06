@@ -335,6 +335,7 @@ export default function App() {
               <ShapExplanationNarrative
                 narrativeId={predictionResult.narrative_summary_id}
                 narrativeEn={predictionResult.narrative_summary_en}
+                contributions={predictionResult.shap_contributions}
                 positiveFactors={predictionResult.top_positive_factors}
                 negativeFactors={predictionResult.top_negative_factors}
                 lang={lang}

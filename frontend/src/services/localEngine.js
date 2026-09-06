@@ -86,18 +86,18 @@ export const LOCAL_PRESETS = [
 ];
 
 export const LOCAL_GLOBAL_IMPORTANCE = [
-  { feature: "OverallQual", label: "Kualitas Keseluruhan (Overall Quality)", mean_abs_shap: 31250.0, importance_pct: 32.5, relative_pct: 32.5, rank: 1 },
-  { feature: "GrLivArea", label: "Luas Ruang Tinggal (Living Area)", mean_abs_shap: 24120.0, importance_pct: 25.1, relative_pct: 25.1, rank: 2 },
-  { feature: "TotalBsmtSF", label: "Luas Basement (Basement Area)", mean_abs_shap: 12450.0, importance_pct: 13.0, relative_pct: 13.0, rank: 3 },
-  { feature: "YearBuilt", label: "Tahun Dibangun (Year Built)", mean_abs_shap: 7890.0, importance_pct: 8.2, relative_pct: 8.2, rank: 4 },
-  { feature: "GarageCars", label: "Kapasitas Garasi (Garage Capacity)", mean_abs_shap: 6420.0, importance_pct: 6.7, relative_pct: 6.7, rank: 5 },
-  { feature: "Neighborhood", label: "Kawasan / Lokasi (Neighborhood)", mean_abs_shap: 4980.0, importance_pct: 5.2, relative_pct: 5.2, rank: 6 },
-  { feature: "LotArea", label: "Luas Tanah (Lot Area)", mean_abs_shap: 3150.0, importance_pct: 3.3, relative_pct: 3.3, rank: 7 },
-  { feature: "YearRemodAdd", label: "Tahun Renovasi (Year Remodeled)", mean_abs_shap: 2450.0, importance_pct: 2.5, relative_pct: 2.5, rank: 8 },
-  { feature: "Fireplaces", label: "Jumlah Perapian (Fireplaces)", mean_abs_shap: 1680.0, importance_pct: 1.7, relative_pct: 1.7, rank: 9 },
-  { feature: "FullBath", label: "Kamar Mandi Lengkap (Full Bathrooms)", mean_abs_shap: 980.0, importance_pct: 1.0, relative_pct: 1.0, rank: 10 },
-  { feature: "TotRmsAbvGrd", label: "Total Kamar (Total Rooms)", mean_abs_shap: 520.0, importance_pct: 0.5, relative_pct: 0.5, rank: 11 },
-  { feature: "BldgType", label: "Tipe Struktur Bangunan (Building Type)", mean_abs_shap: 320.0, importance_pct: 0.3, relative_pct: 0.3, rank: 12 }
+  { feature: "OverallQual", mean_abs_shap: 31250.0, importance_pct: 32.5, relative_pct: 32.5, rank: 1 },
+  { feature: "GrLivArea", mean_abs_shap: 24120.0, importance_pct: 25.1, relative_pct: 25.1, rank: 2 },
+  { feature: "TotalBsmtSF", mean_abs_shap: 12450.0, importance_pct: 13.0, relative_pct: 13.0, rank: 3 },
+  { feature: "YearBuilt", mean_abs_shap: 7890.0, importance_pct: 8.2, relative_pct: 8.2, rank: 4 },
+  { feature: "GarageCars", mean_abs_shap: 6420.0, importance_pct: 6.7, relative_pct: 6.7, rank: 5 },
+  { feature: "Neighborhood", mean_abs_shap: 4980.0, importance_pct: 5.2, relative_pct: 5.2, rank: 6 },
+  { feature: "LotArea", mean_abs_shap: 3150.0, importance_pct: 3.3, relative_pct: 3.3, rank: 7 },
+  { feature: "YearRemodAdd", mean_abs_shap: 2450.0, importance_pct: 2.5, relative_pct: 2.5, rank: 8 },
+  { feature: "Fireplaces", mean_abs_shap: 1680.0, importance_pct: 1.7, relative_pct: 1.7, rank: 9 },
+  { feature: "FullBath", mean_abs_shap: 980.0, importance_pct: 1.0, relative_pct: 1.0, rank: 10 },
+  { feature: "TotRmsAbvGrd", mean_abs_shap: 520.0, importance_pct: 0.5, relative_pct: 0.5, rank: 11 },
+  { feature: "BldgType", mean_abs_shap: 320.0, importance_pct: 0.3, relative_pct: 0.3, rank: 12 }
 ];
 
 export function calculateLocalPrediction(features, customRate = null) {
@@ -145,18 +145,18 @@ export function calculateLocalPrediction(features, customRate = null) {
   const shapBldgType = bldgMultipliers[f.BldgType] ?? 0;
 
   const rawContributions = [
-    { key: 'OverallQual', label: 'Overall Quality (Kualitas Bangunan)', val: `${f.OverallQual}/10`, shap: shapOverallQual },
-    { key: 'GrLivArea', label: 'Living Area (Luas Ruang Tinggal)', val: `${f.GrLivArea} sq ft`, shap: shapGrLivArea },
-    { key: 'TotalBsmtSF', label: 'Basement Area (Luas Basement)', val: `${f.TotalBsmtSF} sq ft`, shap: shapTotalBsmtSF },
-    { key: 'GarageCars', label: 'Garage Capacity (Garasi Mobil)', val: `${f.GarageCars} mobil`, shap: shapGarageCars },
-    { key: 'YearBuilt', label: 'Year Built (Tahun Dibangun)', val: `${f.YearBuilt}`, shap: shapYearBuilt },
-    { key: 'YearRemodAdd', label: 'Year Remodeled (Tahun Renovasi)', val: `${f.YearRemodAdd}`, shap: shapYearRemodAdd },
-    { key: 'Neighborhood', label: 'Neighborhood (Kawasan Perumahan)', val: `${f.Neighborhood}`, shap: shapNeighborhood },
-    { key: 'LotArea', label: 'Lot Area (Luas Tanah)', val: `${f.LotArea} sq ft`, shap: shapLotArea },
-    { key: 'Fireplaces', label: 'Fireplaces (Perapian)', val: `${f.Fireplaces} unit`, shap: shapFireplaces },
-    { key: 'FullBath', label: 'Full Bathrooms (Kamar Mandi Lengkap)', val: `${f.FullBath} unit`, shap: shapFullBath },
-    { key: 'TotRmsAbvGrd', label: 'Total Rooms (Total Kamar)', val: `${f.TotRmsAbvGrd} ruang`, shap: shapTotRmsAbvGrd },
-    { key: 'BldgType', label: 'Building Type (Tipe Struktur)', val: `${f.BldgType}`, shap: shapBldgType }
+    { key: 'OverallQual', rawVal: `${f.OverallQual || 6}/10`, shap: shapOverallQual },
+    { key: 'GrLivArea', rawVal: `${f.GrLivArea || 1500}`, unitKey: 'sqft', shap: shapGrLivArea },
+    { key: 'TotalBsmtSF', rawVal: `${f.TotalBsmtSF || 1000}`, unitKey: 'sqft', shap: shapTotalBsmtSF },
+    { key: 'GarageCars', rawVal: `${f.GarageCars ?? 2}`, unitKey: 'cars', shap: shapGarageCars },
+    { key: 'YearBuilt', rawVal: `${f.YearBuilt || 1971}`, shap: shapYearBuilt },
+    { key: 'YearRemodAdd', rawVal: `${f.YearRemodAdd || 1984}`, shap: shapYearRemodAdd },
+    { key: 'Neighborhood', rawVal: `${f.Neighborhood || 'CollgCr'}`, shap: shapNeighborhood },
+    { key: 'LotArea', rawVal: `${f.LotArea || 9800}`, unitKey: 'sqft', shap: shapLotArea },
+    { key: 'Fireplaces', rawVal: `${f.Fireplaces ?? 1}`, unitKey: 'fireplaces', shap: shapFireplaces },
+    { key: 'FullBath', rawVal: `${f.FullBath ?? 2}`, unitKey: 'baths', shap: shapFullBath },
+    { key: 'TotRmsAbvGrd', rawVal: `${f.TotRmsAbvGrd || 6}`, unitKey: 'rooms', shap: shapTotRmsAbvGrd },
+    { key: 'BldgType', rawVal: `${f.BldgType || '1Fam'}`, shap: shapBldgType }
   ];
 
   const contributions = rawContributions.map((item) => {
@@ -164,14 +164,13 @@ export function calculateLocalPrediction(features, customRate = null) {
     const formatted = `${isPos ? '+' : '-'}$${Math.abs(Math.round(item.shap)).toLocaleString('en-US')}`;
     return {
       feature_key: item.key,
-      feature_label: item.label,
-      feature_value: item.val,
+      raw_val: item.rawVal,
+      unit_key: item.unitKey,
+      feature_label: item.key,
+      feature_value: item.rawVal,
       shap_value: Math.round(item.shap),
       direction: isPos ? 'positive' : 'negative',
-      formatted_shap: formatted,
-      impact_text: isPos
-        ? `${item.label} (${item.val}) meningkatkan taksiran ${formatted}`
-        : `${item.label} (${item.val}) menurunkan taksiran ${formatted}`
+      formatted_shap: formatted
     };
   }).sort((a, b) => Math.abs(b.shap_value) - Math.abs(a.shap_value));
 

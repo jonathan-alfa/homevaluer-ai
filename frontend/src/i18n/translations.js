@@ -18,6 +18,14 @@ export const translations = {
       modelPill: "Dilatih pada 1.460 Data Rumah Kaggle Ames",
       readGuideBtn: "📖 Baca Panduan Lengkap untuk Orang Awam",
     },
+    iso: {
+      header: "Spek Isometrik Arsitektur 3D",
+      materialGrade: "Kelas Kualitas",
+      builtYear: "Tahun Dibangun",
+      sector: "Kawasan Ames",
+      structure: "Struktur",
+      interactive: "Paralaks Mouse Aktif"
+    },
     presets: {
       title: "Preset Profil Rumah Contoh",
       subtitle: "Klik profil untuk langsung menguji konfigurasi rumah nyata",
@@ -43,19 +51,40 @@ export const translations = {
       s4_title: "Pengaruh Pasar Global & Intelijen Dataset",
       s4_desc: "Faktor penentu harga paling berpengaruh di seluruh 1.460 sampel data pasar perumahan Ames.",
     },
+    features: {
+      OverallQual: "Kualitas Bangunan",
+      GrLivArea: "Luas Ruang Tinggal",
+      TotalBsmtSF: "Luas Area Basement",
+      GarageCars: "Kapasitas Garasi",
+      YearBuilt: "Tahun Dibangun",
+      YearRemodAdd: "Tahun Renovasi",
+      Neighborhood: "Kawasan / Lokasi",
+      LotArea: "Luas Kavling Tanah",
+      Fireplaces: "Jumlah Perapian",
+      FullBath: "Kamar Mandi Lengkap",
+      TotRmsAbvGrd: "Total Kamar",
+      BldgType: "Tipe Struktur Bangunan"
+    },
+    units: {
+      cars: "mobil",
+      rooms: "ruang",
+      baths: "kamar",
+      fireplaces: "unit",
+      sqft: "sq ft"
+    },
     form: {
       sec1: "Dimensi & Kualitas Bangunan",
       sec2: "Lokasi & Tahun Konstruksi",
       sec3: "Ruangan & Fasilitas Hunian",
       
-      overallQual: "Kualitas Material & Finishing (Overall Quality)",
+      overallQual: "Kualitas Material & Finishing",
       overallQualDesc: "Skala 1 (Sangat Buruk) hingga 10 (Sangat Mewah)",
       
       grLivArea: "Luas Lantai Tinggal di Atas Tanah",
       totalBsmtSF: "Luas Area Basement",
-      lotArea: "Luas Kavling Tanah (Lot Area)",
+      lotArea: "Luas Kavling Tanah",
       
-      neighborhood: "Kawasan (Neighborhood Ames)",
+      neighborhood: "Kawasan Lingkungan",
       bldgType: "Tipe Struktur Bangunan",
       yearBuilt: "Tahun Konstruksi Selesai",
       yearRemodAdd: "Tahun Renovasi Terakhir",
@@ -85,6 +114,8 @@ export const translations = {
     narrative: {
       title: "Ringkasan Keputusan Kecerdasan Buatan (AI Summary)",
       switchLang: "Bahasa",
+      increasesValuation: "meningkatkan taksiran",
+      decreasesValuation: "menurunkan taksiran"
     },
     shap: {
       title: "Transparansi Faktor Harga (SHAP Waterfall)",
@@ -137,6 +168,12 @@ export const translations = {
       sec1_badge: "KONSEP DASAR 01",
       sec1_title: "Bagaimana AI Menentukan Harga Rumah?",
       sec1_text: "Bayangkan seorang penilai properti senior yang telah mencatat 1.460 transaksi jual-beli rumah asli di kota Ames, Iowa. Komputer mempelajari pola tersebut menggunakan algoritma Gradient Boosting (kumpulan pohon keputusan). AI melihat hubungan antara kualitas material, luas tanah, lokasi, dan tahun bangun terhadap harga transaksi riil. Model ini memiliki akurasi 91.7% (R² = 0.9167), artinya 91.7% variasi harga di pasar dapat diprediksi dengan sangat tepat oleh model.",
+      comp_trad_badge: "Cara Tradisional",
+      comp_trad_title: "Perkiraan Manual Sederhana",
+      comp_trad_desc: "Mengandalkan intuisi atau rumus kaku (misal: luas x harga per meter). Sering melewatkan kombinasi kompleks seperti pengaruh usia konstruksi terhadap nilai lokasi.",
+      comp_ai_badge: "Kecerdasan Buatan (Gradient Boosting)",
+      comp_ai_title: "Analisis 1.460 Pola Nyata",
+      comp_ai_desc: "Membangun ratusan pohon keputusan statistik yang saling mengoreksi kesalahan. Mempertimbangkan sinergi 12 variabel sekaligus dengan akurasi 91.7% R².",
       
       sec2_badge: "KONSEP DASAR 02",
       sec2_title: "Apa Masalah AI Biasa dan Solusi SHAP?",
@@ -264,6 +301,14 @@ export const translations = {
       modelPill: "Trained on 1,460 Kaggle Ames Housing Records",
       readGuideBtn: "📖 Read the Beginner's Guide",
     },
+    iso: {
+      header: "3D Architectural Isometric Spec",
+      materialGrade: "Material Grade",
+      builtYear: "Built Year",
+      sector: "Ames Sector",
+      structure: "Structure",
+      interactive: "Mouse Parallax Active"
+    },
     presets: {
       title: "Preset Property Profiles",
       subtitle: "Click any profile to instantly evaluate real benchmark homes",
@@ -289,19 +334,40 @@ export const translations = {
       s4_title: "Global Market Factors & Dataset Intelligence",
       s4_desc: "Most influential market determinants across all 1,460 Ames residential transactions.",
     },
+    features: {
+      OverallQual: "Overall Quality",
+      GrLivArea: "Living Area",
+      TotalBsmtSF: "Basement Area",
+      GarageCars: "Garage Capacity",
+      YearBuilt: "Year Built",
+      YearRemodAdd: "Year Remodeled",
+      Neighborhood: "Neighborhood",
+      LotArea: "Lot Area",
+      Fireplaces: "Fireplaces",
+      FullBath: "Full Bathrooms",
+      TotRmsAbvGrd: "Total Rooms",
+      BldgType: "Building Type"
+    },
+    units: {
+      cars: "cars",
+      rooms: "rooms",
+      baths: "baths",
+      fireplaces: "units",
+      sqft: "sq ft"
+    },
     form: {
       sec1: "Building Dimensions & Quality",
       sec2: "Location & Construction Period",
       sec3: "Living Rooms & Amenities",
       
-      overallQual: "Material & Finish Quality (Overall Quality)",
+      overallQual: "Material & Finish Quality",
       overallQualDesc: "Scale from 1 (Very Poor) to 10 (Very Luxurious)",
       
       grLivArea: "Above Ground Living Area",
       totalBsmtSF: "Total Basement Area",
-      lotArea: "Lot Area (Parcel Size)",
+      lotArea: "Lot Area",
       
-      neighborhood: "Neighborhood Location (Ames)",
+      neighborhood: "Neighborhood Location",
       bldgType: "Dwelling Structure Type",
       yearBuilt: "Original Construction Year",
       yearRemodAdd: "Last Major Remodel Year",
@@ -331,6 +397,8 @@ export const translations = {
     narrative: {
       title: "Artificial Intelligence Decision Summary",
       switchLang: "Language",
+      increasesValuation: "increases valuation by",
+      decreasesValuation: "decreases valuation by"
     },
     shap: {
       title: "Price Driver Transparency (SHAP Waterfall)",
@@ -383,6 +451,12 @@ export const translations = {
       sec1_badge: "CORE PRINCIPLE 01",
       sec1_title: "How Does Machine Learning Appraise a Home?",
       sec1_text: "Imagine an experienced senior real estate appraiser who has documented 1,460 genuine home sales in Ames, Iowa. A machine learning model (Gradient Boosting) studies all those transaction records to find statistical patterns between physical quality, area, age, and sale price. It achieves an R² score of 91.7%, meaning 91.7% of price variations in the market are accurately captured by the model.",
+      comp_trad_badge: "Traditional Method",
+      comp_trad_title: "Basic Manual Estimation",
+      comp_trad_desc: "Relies on intuition or rigid rules of thumb (e.g. price per square meter/foot). Often misses complex interactions such as how construction age affects neighborhood premiums.",
+      comp_ai_badge: "Artificial Intelligence (Gradient Boosting)",
+      comp_ai_title: "Analysis of 1,460 Authentic Sales",
+      comp_ai_desc: "Constructs hundreds of statistical decision trees that iteratively correct pricing errors, evaluating 12 property variables simultaneously with 91.7% R² accuracy.",
       
       sec2_badge: "CORE PRINCIPLE 02",
       sec2_title: "The 'Black Box' AI Dilemma and the SHAP Solution",

@@ -80,9 +80,11 @@ export default function ShapWaterfallChart({ contributions = [], basePrice = 181
               title={item.impact_text}
             >
               <div className="shap-feat-meta">
-                <span className="shap-feat-name">{item.feature_label}</span>
+                <span className="shap-feat-name">
+                  {t.features?.[item.feature_key] || item.feature_label}
+                </span>
                 <span className="shap-feat-val">
-                  {t.shap.inputVal}: <strong>{String(item.feature_value)}</strong>
+                  {t.shap.inputVal}: <strong>{item.unit_key && t.units?.[item.unit_key] ? `${item.raw_val || item.feature_value} ${t.units[item.unit_key]}` : String(item.feature_value)}</strong>
                 </span>
               </div>
 

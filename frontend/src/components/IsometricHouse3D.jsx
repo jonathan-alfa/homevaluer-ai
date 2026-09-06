@@ -45,7 +45,7 @@ export default function IsometricHouse3D({ formData, t }) {
     >
       <div className="iso-header-badge">
         <span className="iso-live-dot"></span>
-        <span>3D Architectural Isometric Spec</span>
+        <span>{t.iso?.header || "3D Architectural Isometric Spec"}</span>
       </div>
 
       {/* 3D Isometric Architectural Geometry */}
@@ -83,28 +83,28 @@ export default function IsometricHouse3D({ formData, t }) {
         {/* Floating 3D Stat Badges */}
         <div className="iso-floating-badge badge-top">
           <div className="badge-val">⭐ {OverallQual}/10</div>
-          <div className="badge-lbl">Material Grade</div>
+          <div className="badge-lbl">{t.iso?.materialGrade || "Material Grade"}</div>
         </div>
 
         <div className="iso-floating-badge badge-left">
           <div className="badge-val">{YearBuilt}</div>
-          <div className="badge-lbl">Built Year</div>
+          <div className="badge-lbl">{t.iso?.builtYear || "Built Year"}</div>
         </div>
 
         <div className="iso-floating-badge badge-right">
           <div className="badge-val">📍 {Neighborhood}</div>
-          <div className="badge-lbl">Ames Sector</div>
+          <div className="badge-lbl">{t.iso?.sector || "Ames Sector"}</div>
         </div>
       </div>
 
       <div className="iso-footer-info">
         <div className="iso-spec-pill">
-          <span>Structure:</span>
+          <span>{t.iso?.structure || "Structure"}:</span>
           <strong>{BldgType}</strong>
         </div>
         <div className="iso-spec-pill">
-          <span>Interactive 3D:</span>
-          <strong>Mouse Parallax Active</strong>
+          <span>{t.iso?.interactive || "Interactive 3D"}:</span>
+          <strong>Parallax</strong>
         </div>
       </div>
     </div>

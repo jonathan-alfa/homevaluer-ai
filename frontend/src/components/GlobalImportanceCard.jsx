@@ -4,21 +4,6 @@ import { BarChart3 } from 'lucide-react';
 export default function GlobalImportanceCard({ globalImportance = [], t }) {
   if (!globalImportance || globalImportance.length === 0) return null;
 
-  const FEATURE_NAMES_FALLBACK = {
-    OverallQual: 'Kualitas Keseluruhan (Overall Quality)',
-    GrLivArea: 'Luas Ruang Tinggal (Living Area)',
-    TotalBsmtSF: 'Luas Basement (Basement Area)',
-    YearBuilt: 'Tahun Dibangun (Year Built)',
-    GarageCars: 'Kapasitas Garasi (Garage Capacity)',
-    Neighborhood: 'Kawasan / Lokasi (Neighborhood)',
-    LotArea: 'Luas Tanah (Lot Area)',
-    YearRemodAdd: 'Tahun Renovasi (Year Remodeled)',
-    Fireplaces: 'Jumlah Perapian (Fireplaces)',
-    FullBath: 'Kamar Mandi Lengkap (Full Bathrooms)',
-    TotRmsAbvGrd: 'Total Kamar (Total Rooms)',
-    BldgType: 'Tipe Bangunan (Building Type)'
-  };
-
   return (
     <div className="importance-fullwidth-card" id="global-importance-card">
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.5rem' }}>
@@ -33,7 +18,7 @@ export default function GlobalImportanceCard({ globalImportance = [], t }) {
 
       <div className="importance-grid">
         {globalImportance.map((item, idx) => {
-          const label = item.label || FEATURE_NAMES_FALLBACK[item.feature] || item.feature || `Fitur #${idx + 1}`;
+          const label = t.features?.[item.feature] || item.label || item.feature || `#${idx + 1}`;
           const pct = Number(item.importance_pct ?? item.relative_pct ?? 0);
           const meanShap = Number(item.mean_abs_shap || 0);
 

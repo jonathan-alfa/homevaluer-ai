@@ -64,20 +64,20 @@ export default function GuidePage({ onBackToDashboard, t }) {
 
         <div className="guide-comparison-grid">
           <div className="comp-box">
-            <div className="comp-badge">Cara Tradisional</div>
-            <h4 style={{ fontSize: '1.05rem', margin: '0.5rem 0' }}>Perkiraan Manual Sederhana</h4>
+            <div className="comp-badge">{g.comp_trad_badge}</div>
+            <h4 style={{ fontSize: '1.05rem', margin: '0.5rem 0' }}>{g.comp_trad_title}</h4>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-              Mengandalkan intuisi atau rumus kaku (misal: luas x harga per meter). Sering melewatkan kombinasi kompleks seperti pengaruh usia konstruksi terhadap nilai lokasi.
+              {g.comp_trad_desc}
             </p>
           </div>
 
           <div className="comp-box highlighted">
             <div className="comp-badge" style={{ background: 'var(--text-primary)', color: 'var(--text-inverse)' }}>
-              Kecerdasan Buatan (Gradient Boosting)
+              {g.comp_ai_badge}
             </div>
-            <h4 style={{ fontSize: '1.05rem', margin: '0.5rem 0' }}>Analisis 1.460 Pola Nyata</h4>
+            <h4 style={{ fontSize: '1.05rem', margin: '0.5rem 0' }}>{g.comp_ai_title}</h4>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-              Membangun ratusan pohon keputusan statistik yang saling mengoreksi kesalahan. Mempertimbangkan sinergi 12 variabel sekaligus dengan akurasi 91.7% R².
+              {g.comp_ai_desc}
             </p>
           </div>
         </div>
