@@ -86,18 +86,18 @@ export const LOCAL_PRESETS = [
 ];
 
 export const LOCAL_GLOBAL_IMPORTANCE = [
-  { feature: "OverallQual", mean_abs_shap: 31250.0, relative_pct: 32.5, rank: 1 },
-  { feature: "GrLivArea", mean_abs_shap: 24120.0, relative_pct: 25.1, rank: 2 },
-  { feature: "TotalBsmtSF", mean_abs_shap: 12450.0, relative_pct: 13.0, rank: 3 },
-  { feature: "YearBuilt", mean_abs_shap: 7890.0, relative_pct: 8.2, rank: 4 },
-  { feature: "GarageCars", mean_abs_shap: 6420.0, relative_pct: 6.7, rank: 5 },
-  { feature: "Neighborhood", mean_abs_shap: 4980.0, relative_pct: 5.2, rank: 6 },
-  { feature: "LotArea", mean_abs_shap: 3150.0, relative_pct: 3.3, rank: 7 },
-  { feature: "YearRemodAdd", mean_abs_shap: 2450.0, relative_pct: 2.5, rank: 8 },
-  { feature: "Fireplaces", mean_abs_shap: 1680.0, relative_pct: 1.7, rank: 9 },
-  { feature: "FullBath", mean_abs_shap: 980.0, relative_pct: 1.0, rank: 10 },
-  { feature: "TotRmsAbvGrd", mean_abs_shap: 520.0, relative_pct: 0.5, rank: 11 },
-  { feature: "BldgType", mean_abs_shap: 320.0, relative_pct: 0.3, rank: 12 }
+  { feature: "OverallQual", label: "Kualitas Keseluruhan (Overall Quality)", mean_abs_shap: 31250.0, importance_pct: 32.5, relative_pct: 32.5, rank: 1 },
+  { feature: "GrLivArea", label: "Luas Ruang Tinggal (Living Area)", mean_abs_shap: 24120.0, importance_pct: 25.1, relative_pct: 25.1, rank: 2 },
+  { feature: "TotalBsmtSF", label: "Luas Basement (Basement Area)", mean_abs_shap: 12450.0, importance_pct: 13.0, relative_pct: 13.0, rank: 3 },
+  { feature: "YearBuilt", label: "Tahun Dibangun (Year Built)", mean_abs_shap: 7890.0, importance_pct: 8.2, relative_pct: 8.2, rank: 4 },
+  { feature: "GarageCars", label: "Kapasitas Garasi (Garage Capacity)", mean_abs_shap: 6420.0, importance_pct: 6.7, relative_pct: 6.7, rank: 5 },
+  { feature: "Neighborhood", label: "Kawasan / Lokasi (Neighborhood)", mean_abs_shap: 4980.0, importance_pct: 5.2, relative_pct: 5.2, rank: 6 },
+  { feature: "LotArea", label: "Luas Tanah (Lot Area)", mean_abs_shap: 3150.0, importance_pct: 3.3, relative_pct: 3.3, rank: 7 },
+  { feature: "YearRemodAdd", label: "Tahun Renovasi (Year Remodeled)", mean_abs_shap: 2450.0, importance_pct: 2.5, relative_pct: 2.5, rank: 8 },
+  { feature: "Fireplaces", label: "Jumlah Perapian (Fireplaces)", mean_abs_shap: 1680.0, importance_pct: 1.7, relative_pct: 1.7, rank: 9 },
+  { feature: "FullBath", label: "Kamar Mandi Lengkap (Full Bathrooms)", mean_abs_shap: 980.0, importance_pct: 1.0, relative_pct: 1.0, rank: 10 },
+  { feature: "TotRmsAbvGrd", label: "Total Kamar (Total Rooms)", mean_abs_shap: 520.0, importance_pct: 0.5, relative_pct: 0.5, rank: 11 },
+  { feature: "BldgType", label: "Tipe Struktur Bangunan (Building Type)", mean_abs_shap: 320.0, importance_pct: 0.3, relative_pct: 0.3, rank: 12 }
 ];
 
 export function calculateLocalPrediction(features, customRate = null) {
