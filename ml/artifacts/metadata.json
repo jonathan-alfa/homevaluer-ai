@@ -1,0 +1,370 @@
+{
+  "model_name": "Gradient Boosting Regressor",
+  "metrics": {
+    "r2": 0.916744557367563,
+    "rmse": 25270.46504349586,
+    "mae": 16672.716696891195
+  },
+  "base_value": 181441.54195205483,
+  "transformed_feature_names": [
+    "OverallQual",
+    "GrLivArea",
+    "TotalBsmtSF",
+    "GarageCars",
+    "YearBuilt",
+    "YearRemodAdd",
+    "FullBath",
+    "TotRmsAbvGrd",
+    "Fireplaces",
+    "LotArea",
+    "Neighborhood_Blmngtn",
+    "Neighborhood_Blueste",
+    "Neighborhood_BrDale",
+    "Neighborhood_BrkSide",
+    "Neighborhood_ClearCr",
+    "Neighborhood_CollgCr",
+    "Neighborhood_Crawfor",
+    "Neighborhood_Edwards",
+    "Neighborhood_Gilbert",
+    "Neighborhood_IDOTRR",
+    "Neighborhood_MeadowV",
+    "Neighborhood_Mitchel",
+    "Neighborhood_NAmes",
+    "Neighborhood_NPkVill",
+    "Neighborhood_NWAmes",
+    "Neighborhood_NoRidge",
+    "Neighborhood_NridgHt",
+    "Neighborhood_OldTown",
+    "Neighborhood_SWISU",
+    "Neighborhood_Sawyer",
+    "Neighborhood_SawyerW",
+    "Neighborhood_Somerst",
+    "Neighborhood_StoneBr",
+    "Neighborhood_Timber",
+    "Neighborhood_Veenker",
+    "BldgType_1Fam",
+    "BldgType_2fmCon",
+    "BldgType_Duplex",
+    "BldgType_Twnhs",
+    "BldgType_TwnhsE"
+  ],
+  "numeric_features": [
+    "OverallQual",
+    "GrLivArea",
+    "TotalBsmtSF",
+    "GarageCars",
+    "YearBuilt",
+    "YearRemodAdd",
+    "FullBath",
+    "TotRmsAbvGrd",
+    "Fireplaces",
+    "LotArea"
+  ],
+  "categorical_features": [
+    "Neighborhood",
+    "BldgType"
+  ],
+  "global_feature_importance": [
+    {
+      "feature": "OverallQual",
+      "mean_abs_shap": 28784.67
+    },
+    {
+      "feature": "GrLivArea",
+      "mean_abs_shap": 14988.86
+    },
+    {
+      "feature": "TotalBsmtSF",
+      "mean_abs_shap": 9325.99
+    },
+    {
+      "feature": "YearRemodAdd",
+      "mean_abs_shap": 7145.17
+    },
+    {
+      "feature": "YearBuilt",
+      "mean_abs_shap": 5554.13
+    },
+    {
+      "feature": "Neighborhood",
+      "mean_abs_shap": 5161.58
+    },
+    {
+      "feature": "GarageCars",
+      "mean_abs_shap": 4749.4
+    },
+    {
+      "feature": "LotArea",
+      "mean_abs_shap": 4490.18
+    },
+    {
+      "feature": "Fireplaces",
+      "mean_abs_shap": 3887.27
+    },
+    {
+      "feature": "FullBath",
+      "mean_abs_shap": 1077.47
+    },
+    {
+      "feature": "BldgType",
+      "mean_abs_shap": 711.21
+    },
+    {
+      "feature": "TotRmsAbvGrd",
+      "mean_abs_shap": 598.4
+    }
+  ],
+  "feature_schema": {
+    "OverallQual": {
+      "label": "Overall Quality",
+      "label_id": "Kualitas Keseluruhan",
+      "type": "integer",
+      "min": 1,
+      "max": 10,
+      "default": 6,
+      "step": 1,
+      "unit": "skala 1-10",
+      "description": "Menilai kualitas material dan finishing keseluruhan rumah (1 = Buruk, 10 = Sangat Mewah)"
+    },
+    "GrLivArea": {
+      "label": "Living Area",
+      "label_id": "Luas Bangunan",
+      "type": "integer",
+      "min": 300,
+      "max": 4500,
+      "default": 1500,
+      "step": 25,
+      "unit": "sq ft (~139 m\u00b2)",
+      "description": "Luas lantai ruang tinggal di atas permukaan tanah (dalam square feet)"
+    },
+    "TotalBsmtSF": {
+      "label": "Basement Area",
+      "label_id": "Luas Basement",
+      "type": "integer",
+      "min": 0,
+      "max": 3000,
+      "default": 1000,
+      "step": 25,
+      "unit": "sq ft (~93 m\u00b2)",
+      "description": "Total luas area ruang bawah tanah (basement)"
+    },
+    "GarageCars": {
+      "label": "Garage Capacity",
+      "label_id": "Kapasitas Garasi",
+      "type": "integer",
+      "min": 0,
+      "max": 4,
+      "default": 2,
+      "step": 1,
+      "unit": "mobil",
+      "description": "Kapasitas parkir mobil di dalam garasi tertutup"
+    },
+    "YearBuilt": {
+      "label": "Year Built",
+      "label_id": "Tahun Dibangun",
+      "type": "integer",
+      "min": 1880,
+      "max": 2010,
+      "default": 1985,
+      "step": 1,
+      "unit": "tahun",
+      "description": "Tahun awal saat konstruksi rumah diselesaikan"
+    },
+    "YearRemodAdd": {
+      "label": "Remodel Year",
+      "label_id": "Tahun Renovasi",
+      "type": "integer",
+      "min": 1950,
+      "max": 2010,
+      "default": 1995,
+      "step": 1,
+      "unit": "tahun",
+      "description": "Tahun renovasi besar terakhir (sama dengan tahun bangun jika belum pernah renovasi)"
+    },
+    "FullBath": {
+      "label": "Full Bathrooms",
+      "label_id": "Kamar Mandi Lengkap",
+      "type": "integer",
+      "min": 0,
+      "max": 4,
+      "default": 2,
+      "step": 1,
+      "unit": "ruangan",
+      "description": "Jumlah kamar mandi lengkap dengan bak/shower di atas tanah"
+    },
+    "TotRmsAbvGrd": {
+      "label": "Total Rooms",
+      "label_id": "Total Kamar",
+      "type": "integer",
+      "min": 2,
+      "max": 14,
+      "default": 6,
+      "step": 1,
+      "unit": "ruangan",
+      "description": "Total seluruh ruangan di atas tanah (tidak termasuk kamar mandi)"
+    },
+    "Fireplaces": {
+      "label": "Fireplaces",
+      "label_id": "Perapian",
+      "type": "integer",
+      "min": 0,
+      "max": 4,
+      "default": 1,
+      "step": 1,
+      "unit": "unit",
+      "description": "Jumlah tungku perapian di dalam rumah"
+    },
+    "LotArea": {
+      "label": "Lot Area",
+      "label_id": "Luas Tanah",
+      "type": "integer",
+      "min": 1300,
+      "max": 50000,
+      "default": 9500,
+      "step": 100,
+      "unit": "sq ft (~880 m\u00b2)",
+      "description": "Total luas kavling tanah properti"
+    },
+    "Neighborhood": {
+      "label": "Neighborhood",
+      "label_id": "Kawasan / Lingkungan",
+      "type": "category",
+      "options": [
+        "Blmngtn",
+        "Blueste",
+        "BrDale",
+        "BrkSide",
+        "ClearCr",
+        "CollgCr",
+        "Crawfor",
+        "Edwards",
+        "Gilbert",
+        "IDOTRR",
+        "MeadowV",
+        "Mitchel",
+        "NAmes",
+        "NPkVill",
+        "NWAmes",
+        "NoRidge",
+        "NridgHt",
+        "OldTown",
+        "SWISU",
+        "Sawyer",
+        "SawyerW",
+        "Somerst",
+        "StoneBr",
+        "Timber",
+        "Veenker"
+      ],
+      "default": "CollgCr",
+      "description": "Kawasan permukiman di wilayah kota Ames, Iowa"
+    },
+    "BldgType": {
+      "label": "Building Type",
+      "label_id": "Tipe Bangunan",
+      "type": "category",
+      "options": [
+        {
+          "value": "1Fam",
+          "label": "Single-family Detached (Rumah Tunggal Mandiri)"
+        },
+        {
+          "value": "2fmCon",
+          "label": "Two-Family Conversion (Konversi Dua Keluarga)"
+        },
+        {
+          "value": "Duplex",
+          "label": "Duplex (Rumah Gandeng 2 Unit)"
+        },
+        {
+          "value": "TwnhsE",
+          "label": "Townhouse End Unit (Unit Sudut Townhouse)"
+        },
+        {
+          "value": "Twnhs",
+          "label": "Townhouse Inside Unit (Unit Tengah Townhouse)"
+        }
+      ],
+      "default": "1Fam",
+      "description": "Kategori struktur arsitektur hunian"
+    }
+  },
+  "preset_houses": [
+    {
+      "id": "luxury_estate",
+      "name": "Modern Luxury Estate",
+      "tag": "Mewah & Luas",
+      "features": {
+        "OverallQual": 9,
+        "GrLivArea": 2850,
+        "TotalBsmtSF": 1800,
+        "GarageCars": 3,
+        "YearBuilt": 2006,
+        "YearRemodAdd": 2007,
+        "FullBath": 3,
+        "TotRmsAbvGrd": 10,
+        "Fireplaces": 2,
+        "LotArea": 14500,
+        "Neighborhood": "NoRidge",
+        "BldgType": "1Fam"
+      }
+    },
+    {
+      "id": "suburban_family",
+      "name": "Suburban Family Home",
+      "tag": "Populer & Nyaman",
+      "features": {
+        "OverallQual": 7,
+        "GrLivArea": 1650,
+        "TotalBsmtSF": 1050,
+        "GarageCars": 2,
+        "YearBuilt": 1998,
+        "YearRemodAdd": 2003,
+        "FullBath": 2,
+        "TotRmsAbvGrd": 7,
+        "Fireplaces": 1,
+        "LotArea": 9600,
+        "Neighborhood": "CollgCr",
+        "BldgType": "1Fam"
+      }
+    },
+    {
+      "id": "cozy_starter",
+      "name": "Cozy Starter Cottage",
+      "tag": "Ekonomis & Kompak",
+      "features": {
+        "OverallQual": 5,
+        "GrLivArea": 980,
+        "TotalBsmtSF": 850,
+        "GarageCars": 1,
+        "YearBuilt": 1960,
+        "YearRemodAdd": 1970,
+        "FullBath": 1,
+        "TotRmsAbvGrd": 5,
+        "Fireplaces": 0,
+        "LotArea": 7200,
+        "Neighborhood": "OldTown",
+        "BldgType": "1Fam"
+      }
+    },
+    {
+      "id": "townhouse_modern",
+      "name": "Modern Urban Townhouse",
+      "tag": "Praktis & Terawat",
+      "features": {
+        "OverallQual": 8,
+        "GrLivArea": 1450,
+        "TotalBsmtSF": 1200,
+        "GarageCars": 2,
+        "YearBuilt": 2005,
+        "YearRemodAdd": 2006,
+        "FullBath": 2,
+        "TotRmsAbvGrd": 6,
+        "Fireplaces": 1,
+        "LotArea": 4200,
+        "Neighborhood": "Somerst",
+        "BldgType": "TwnhsE"
+      }
+    }
+  ]
+}

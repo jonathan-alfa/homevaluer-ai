@@ -1,0 +1,1869 @@
+/* ==========================================================================
+   HomeValuer AI — Architectural Monochrome 3D Design System
+   Dual-Theme: Pure Black & White (Dark & Light Mode) + 3D Tactile Aesthetics
+   Typography: Space Grotesk (Headings/Numbers) + Plus Jakarta Sans (UI) + JetBrains Mono (Data)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Theme Variables: Monochrome & 3D Lighting Tokens
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* LIGHT MODE (Clean Architectural Paper & Platinum) */
+  --bg-canvas: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f1f5f9;
+  --bg-input: #ffffff;
+  
+  --text-primary: #09090b;
+  --text-secondary: #52525b;
+  --text-muted: #71717a;
+  --text-inverse: #ffffff;
+
+  --border-subtle: #e2e8f0;
+  --border-strong: #09090b;
+  --border-focus: #18181b;
+  
+  /* 3D Shadows & Bevels (Light Mode) */
+  --shadow-3d-card: 
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    0 10px 25px -5px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(0, 0, 0, 0.06);
+  --shadow-3d-elevated:
+    0 15px 35px -5px rgba(0, 0, 0, 0.12),
+    0 5px 15px rgba(0, 0, 0, 0.04),
+    0 0 0 1px #09090b;
+  --shadow-btn-3d: 0 4px 0 #09090b;
+  --shadow-btn-3d-active: 0 1px 0 #09090b;
+
+  /* SHAP Monochrome Tokens (Light Mode) */
+  --shap-pos-bg: #09090b;
+  --shap-pos-text: #ffffff;
+  --shap-pos-border: #09090b;
+  
+  --shap-neg-bg: #f4f4f5;
+  --shap-neg-text: #09090b;
+  --shap-neg-border: #a1a1aa;
+
+  --grid-pattern: rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] {
+  /* DARK MODE (True Obsidian & Metallic Titanium) */
+  --bg-canvas: #070709;
+  --bg-surface: #101014;
+  --bg-surface-elevated: #18181e;
+  --bg-input: #0b0b0e;
+  
+  --text-primary: #fdfdfd;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --text-inverse: #070709;
+
+  --border-subtle: #27272e;
+  --border-strong: #fdfdfd;
+  --border-focus: #ffffff;
+  
+  /* 3D Shadows & Bevels (Dark Mode) */
+  --shadow-3d-card: 
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 12px 30px -8px rgba(0, 0, 0, 0.85);
+  --shadow-3d-elevated:
+    0 0 0 1px rgba(255, 255, 255, 0.22),
+    0 20px 45px -10px rgba(0, 0, 0, 0.95),
+    0 0 35px rgba(255, 255, 255, 0.05);
+  --shadow-btn-3d: 0 4px 0 #3f3f46;
+  --shadow-btn-3d-active: 0 1px 0 #3f3f46;
+
+  /* SHAP Monochrome Tokens (Dark Mode) */
+  --shap-pos-bg: #fdfdfd;
+  --shap-pos-text: #070709;
+  --shap-pos-border: #fdfdfd;
+  
+  --shap-neg-bg: #1c1c22;
+  --shap-neg-text: #fdfdfd;
+  --shap-neg-border: #52525b;
+
+  --grid-pattern: rgba(255, 255, 255, 0.035);
+}
+
+/* --------------------------------------------------------------------------
+   2. Typography & Base Layout
+   -------------------------------------------------------------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Architectural Isometric Background Grid */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+    linear-gradient(to right, var(--grid-pattern) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-pattern) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 1.75rem 4rem 1.75rem;
+}
+
+/* Distinct Typography Hierarchy */
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.15;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* --------------------------------------------------------------------------
+   3. Navbar (Bilingual + Theme Switcher)
+   -------------------------------------------------------------------------- */
+
+.navbar-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 2.5rem;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand-icon-3d {
+  width: 46px;
+  height: 46px;
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.brand-icon-3d:hover {
+  transform: translateY(-2px) scale(1.04);
+}
+
+.brand-headline {
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.badge-tag-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  padding: 0.15rem 0.55rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.brand-subtext {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* 3D Tactile Buttons & Controls */
+.btn-toggle-3d {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.95rem;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--border-subtle);
+  transition: all 0.15s ease;
+}
+
+.btn-toggle-3d:hover {
+  border-color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.btn-toggle-3d:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--border-subtle);
+}
+
+.lang-switch-wrap {
+  display: flex;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.lang-btn {
+  padding: 0.35rem 0.75rem;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lang-btn.active {
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* --------------------------------------------------------------------------
+   4. Hero Section & Interactive 3D Isometric Card
+   -------------------------------------------------------------------------- */
+
+.hero-section {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  margin-bottom: 3.5rem;
+}
+
+@media (max-width: 980px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.75rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.hero-title {
+  font-size: 2.85rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.04em;
+}
+
+.hero-description {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+}
+
+/* 3D Isometric House Architectural Card */
+.isometric-hero-wrap {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 1.75rem;
+  box-shadow: var(--shadow-3d-elevated);
+  transform-style: preserve-3d;
+  cursor: grab;
+  position: relative;
+  overflow: hidden;
+}
+
+.iso-header-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.iso-live-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--text-primary);
+  border-radius: 50%;
+  animation: liveBlink 1.8s infinite ease-in-out;
+}
+
+@keyframes liveBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.85); }
+}
+
+.iso-stage {
+  height: 240px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+/* CSS Isometric 3D House Geometry */
+.iso-floor-grid {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 1px dashed var(--border-subtle);
+  transform: rotateX(60deg) rotateZ(-45deg);
+  border-radius: 12px;
+  background: radial-gradient(circle, var(--grid-pattern) 0%, transparent 70%);
+}
+
+.iso-cube {
+  position: relative;
+  width: 140px;
+  height: 110px;
+  transform-style: preserve-3d;
+  transform: rotateX(-24deg) rotateY(32deg);
+}
+
+.iso-face {
+  position: absolute;
+  border: 2px solid var(--text-primary);
+  background: var(--bg-surface);
+}
+
+.iso-roof {
+  width: 140px;
+  height: 90px;
+  transform: rotateX(90deg) translateZ(55px);
+  background: repeating-linear-gradient(45deg, var(--bg-surface-elevated), var(--bg-surface-elevated) 6px, var(--bg-surface) 6px, var(--bg-surface) 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.roof-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+.iso-front {
+  width: 140px;
+  height: 90px;
+  transform: translateZ(45px);
+  padding: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.iso-door {
+  width: 22px;
+  height: 38px;
+  background: var(--text-primary);
+  border-radius: 3px 3px 0 0;
+  margin-top: auto;
+}
+
+.iso-window {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--text-primary);
+  background: var(--bg-surface-elevated);
+}
+
+.iso-right {
+  width: 90px;
+  height: 90px;
+  transform: rotateY(90deg) translateZ(95px);
+  padding: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.iso-garage-door {
+  width: 50px;
+  height: 45px;
+  border: 1px solid var(--text-primary);
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 2px;
+}
+
+.garage-slat {
+  height: 2px;
+  background: var(--border-subtle);
+}
+
+.garage-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Floating 3D Spec Badges */
+.iso-floating-badge {
+  position: absolute;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow-3d-card);
+  pointer-events: none;
+  transform: translateZ(60px);
+}
+
+.badge-top { top: 10px; right: 15px; }
+.badge-left { bottom: 15px; left: 10px; }
+.badge-right { bottom: 10px; right: 15px; }
+
+.badge-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--text-primary);
+}
+
+.badge-lbl {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.iso-footer-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1rem;
+  font-size: 0.78rem;
+}
+
+.iso-spec-pill {
+  display: flex;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   5. Presets (1-Click Test Cards)
+   -------------------------------------------------------------------------- */
+
+.presets-container {
+  margin-bottom: 3.5rem;
+}
+
+.presets-grid-3d {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.preset-btn-3d {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 1.15rem 1.35rem;
+  cursor: pointer;
+  text-align: left;
+  box-shadow: var(--shadow-3d-card);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.preset-btn-3d:hover {
+  transform: translateY(-3px);
+  border-color: var(--text-primary);
+  box-shadow: var(--shadow-3d-elevated);
+}
+
+.preset-btn-3d.active {
+  background: var(--bg-surface-elevated);
+  border: 2px solid var(--text-primary);
+  box-shadow: var(--shadow-3d-elevated);
+}
+
+.preset-top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.preset-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.preset-tag-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  padding: 0.15rem 0.45rem;
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  border-radius: 4px;
+}
+
+.preset-attr-line {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   6. Vertical Flow Section Wrappers (Per-Section Kebawah)
+   -------------------------------------------------------------------------- */
+
+.section-wrapper {
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.section-header-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1rem;
+}
+
+.step-badge-3d {
+  align-self: flex-start;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.65rem;
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  border-radius: 4px;
+}
+
+.section-main-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.section-lead-text {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   7. Form Section: Full-Width 3-Column Structured Layout
+   -------------------------------------------------------------------------- */
+
+.form-fullwidth-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: var(--shadow-3d-card);
+}
+
+.form-columns-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 1040px) {
+  .form-columns-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}
+
+.form-column-box {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.col-heading {
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.field-title {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.field-val-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 0.1rem 0.45rem;
+  border-radius: 5px;
+  color: var(--text-primary);
+}
+
+/* 3D Tactile Quality Rating Buttons (1 to 10) */
+.quality-3d-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+
+.btn-qual-3d {
+  padding: 0.55rem 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--border-subtle);
+  transition: all 0.12s ease;
+}
+
+.btn-qual-3d:hover {
+  border-color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.btn-qual-3d.active {
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  border-color: var(--text-primary);
+  box-shadow: 0 1px 0 var(--text-primary);
+  transform: translateY(2px);
+}
+
+/* Modern Monochrome Sliders */
+.slider-rail {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--border-subtle);
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  border: 3px solid var(--bg-surface);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+/* Select Inputs */
+.select-3d {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  font-size: 0.86rem;
+  color: var(--text-primary);
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.select-3d:focus {
+  border-color: var(--text-primary);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+/* 3D Primary Action Button */
+.btn-calc-3d {
+  grid-column: 1 / -1;
+  margin-top: 1.5rem;
+  padding: 1.15rem;
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  border: 1px solid var(--text-primary);
+  border-radius: 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-btn-3d);
+  transition: all 0.12s ease;
+}
+
+.btn-calc-3d:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--border-strong);
+}
+
+.btn-calc-3d:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: var(--shadow-btn-3d-active);
+}
+
+.btn-calc-3d:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   8. Valuation Result Card & AI Narrative Section
+   -------------------------------------------------------------------------- */
+
+.valuation-fullwidth-card {
+  background: var(--bg-surface);
+  border: 2px solid var(--text-primary);
+  border-radius: 20px;
+  padding: 2.25rem;
+  box-shadow: var(--shadow-3d-elevated);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+}
+
+.val-top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.val-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.val-accuracy-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.price-monumental-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.price-currency-sign {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.price-giant-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+@media (max-width: 640px) {
+  .price-giant-number { font-size: 2.75rem; }
+  .price-currency-sign { font-size: 1.75rem; }
+}
+
+.val-idr-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.75rem;
+}
+
+.val-benchmark-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+@media (max-width: 640px) {
+  .val-benchmark-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.benchmark-box {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+}
+
+.bench-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.bench-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* AI Narrative Card */
+.narrative-fullwidth-card {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: var(--shadow-3d-card);
+}
+
+.narrative-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.narrative-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.narrative-paragraph {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.factors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.factor-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.86rem;
+  padding: 0.5rem 0.85rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+}
+
+.factor-item.pos {
+  border-left: 4px solid var(--text-primary);
+}
+
+.factor-item.neg {
+  border-left: 4px dashed var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   9. Explainable AI: SHAP Waterfall Breakdown Section
+   -------------------------------------------------------------------------- */
+
+.shap-fullwidth-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: var(--shadow-3d-card);
+}
+
+.shap-controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.filter-pills-group {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.btn-filter-pill {
+  padding: 0.4rem 0.85rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-filter-pill:hover {
+  color: var(--text-primary);
+}
+
+.btn-filter-pill.active {
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  border-color: var(--text-primary);
+}
+
+/* Monochrome Waterfall Rows */
+.shap-rows-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.shap-row-item {
+  display: grid;
+  grid-template-columns: 240px 1fr 140px;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+@media (max-width: 768px) {
+  .shap-row-item {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+}
+
+.shap-row-item:hover {
+  transform: translateX(4px);
+  border-color: var(--text-primary);
+}
+
+.shap-feat-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.shap-feat-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.shap-feat-val {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.shap-bar-track {
+  height: 22px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.shap-bar-fill {
+  height: 100%;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.shap-bar-fill.pos {
+  background: var(--text-primary);
+}
+
+.shap-bar-fill.neg {
+  background: repeating-linear-gradient(45deg, var(--border-subtle), var(--border-subtle) 6px, var(--bg-surface) 6px, var(--bg-surface) 12px);
+  border-right: 2px solid var(--text-primary);
+}
+
+.shap-impact-badge-3d {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: right;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+}
+
+.shap-impact-badge-3d.pos {
+  background: var(--text-primary);
+  color: var(--text-inverse);
+}
+
+.shap-impact-badge-3d.neg {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px dashed var(--border-strong);
+}
+
+/* --------------------------------------------------------------------------
+   10. Global Importance & Dataset Intelligence Section
+   -------------------------------------------------------------------------- */
+
+.importance-fullwidth-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: var(--shadow-3d-card);
+}
+
+.importance-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.imp-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.imp-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.86rem;
+}
+
+.imp-label {
+  font-weight: 600;
+}
+
+.imp-stat {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.imp-rail {
+  height: 8px;
+  background: var(--bg-surface-elevated);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+}
+
+.imp-fill {
+  height: 100%;
+  background: var(--text-primary);
+  border-radius: 999px;
+}
+
+/* --------------------------------------------------------------------------
+   11. Dataset Modal & Tables
+   -------------------------------------------------------------------------- */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modal-dialog-3d {
+  background: var(--bg-surface);
+  border: 2px solid var(--text-primary);
+  border-radius: 20px;
+  max-width: 920px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 2.25rem;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.modal-close-3d {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--border-subtle);
+}
+
+.modal-close-3d:active {
+  transform: translateY(2px);
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1rem;
+  margin: 1.75rem 0;
+}
+
+.kpi-card {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+}
+
+.kpi-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.kpi-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.table-wrap {
+  max-height: 250px;
+  overflow-y: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  margin-top: 0.75rem;
+}
+
+.mono-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+}
+
+.mono-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: var(--bg-surface-elevated);
+  border-bottom: 1px solid var(--border-subtle);
+  font-weight: 700;
+}
+
+.mono-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   12. Footer
+   -------------------------------------------------------------------------- */
+
+.footer-block {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .footer-block {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. Interactive 3D Loading Overlay & Directing Transition
+   -------------------------------------------------------------------------- */
+
+.loading-overlay-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(14px);
+  z-index: 250;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeInOverlay 0.25s ease-out forwards;
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.loading-card-3d {
+  background: var(--bg-surface);
+  border: 2px solid var(--text-primary);
+  border-radius: 24px;
+  max-width: 520px;
+  width: 100%;
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow-3d-elevated), 0 25px 50px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: popCardIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popCardIn {
+  from { opacity: 0; transform: scale(0.92) translateY(15px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* 3D Wireframe Cube Spinner */
+.loading-3d-visual {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 1.5rem;
+  perspective: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-cube-3d {
+  width: 54px;
+  height: 54px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: spinCube3D 3.5s linear infinite;
+}
+
+@keyframes spinCube3D {
+  0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+  100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+}
+
+.cube-side {
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  border: 2px solid var(--text-primary);
+  background: rgba(125, 125, 125, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-front  { transform: translateZ(27px); }
+.side-back   { transform: rotateY(180deg) translateZ(27px); }
+.side-right  { transform: rotateY(90deg) translateZ(27px); }
+.side-left   { transform: rotateY(-90deg) translateZ(27px); }
+.side-top    { transform: rotateX(90deg) translateZ(27px); }
+.side-bottom { transform: rotateX(-90deg) translateZ(27px); }
+
+.loading-text-header {
+  margin-bottom: 1.25rem;
+}
+
+.loading-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.loading-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Progress Rail */
+.loading-progress-rail {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.loading-progress-fill {
+  height: 100%;
+  background: var(--text-primary);
+  border-radius: 999px;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.loading-pct-text {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 1.5rem;
+}
+
+/* Steps Breakdown */
+.loading-steps-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  text-align: left;
+}
+
+.loading-step-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+}
+
+.loading-step-item.done {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.loading-step-item.current {
+  color: var(--text-primary);
+  background: var(--bg-surface-elevated);
+  font-weight: 700;
+}
+
+.step-icon-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.loading-step-item.done .step-icon-circle {
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  border-color: var(--text-primary);
+}
+
+.step-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  animation: pulseDot 1.2s infinite ease-in-out;
+}
+
+.step-idle-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border-subtle);
+}
+
+/* Directing badge */
+.directing-badge {
+  margin-top: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem;
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  border-radius: 999px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  animation: popBadge 0.3s ease-out;
+}
+
+@keyframes popBadge {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.bounce-arrow {
+  animation: bounceArrow 0.8s infinite ease-in-out alternate;
+}
+
+@keyframes bounceArrow {
+  from { transform: translateY(-2px); }
+  to { transform: translateY(3px); }
+}
+
+/* Smooth arrival highlight when scrolled to section 2 */
+.target-arrival-highlight {
+  animation: arrivalFlash 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes arrivalFlash {
+  0% {
+    box-shadow: 0 0 0 4px var(--text-primary), 0 25px 60px rgba(0, 0, 0, 0.4);
+    transform: translateY(-4px);
+  }
+  100% {
+    box-shadow: var(--shadow-3d-elevated);
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   14. Separate Beginner Educational Guide Page Styles
+   -------------------------------------------------------------------------- */
+
+.guide-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  animation: fadeInGuide 0.3s ease-out;
+}
+
+@keyframes fadeInGuide {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.guide-top-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.guide-hero-banner {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 1rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.guide-icon-badge {
+  width: 58px;
+  height: 58px;
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.guide-hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  margin-bottom: 0.85rem;
+}
+
+.guide-hero-desc {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* 3D Guide Cards */
+.guide-card-3d {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 2.25rem;
+  box-shadow: var(--shadow-3d-card);
+}
+
+.guide-section-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.guide-card-heading {
+  font-size: 1.65rem;
+  font-weight: 700;
+}
+
+.guide-body-text {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+}
+
+/* Comparison Grid */
+.guide-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .guide-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.comp-box {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+.comp-box.highlighted {
+  border: 2px solid var(--text-primary);
+  box-shadow: var(--shadow-3d-card);
+}
+
+.comp-badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+/* Analogy Banner */
+.analogy-banner {
+  background: var(--bg-surface-elevated);
+  border: 1px dashed var(--border-strong);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.analogy-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* Points Grid */
+.points-4-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.point-card {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.point-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.point-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.point-desc {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Glossary 12 Features Grid */
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.glossary-item-card {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.glossary-item-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--text-primary);
+}
+
+.glossary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.glossary-term {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.glossary-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  flex-shrink: 0;
+}
+
+.glossary-desc {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* FAQ Accordion */
+.faq-accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.faq-card-item {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+
+.faq-card-item.active {
+  border-color: var(--text-primary);
+}
+
+.faq-question-btn {
+  width: 100%;
+  padding: 1.15rem 1.35rem;
+  background: transparent;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+.faq-q-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.faq-answer-pane {
+  padding: 0 1.35rem 1.25rem 1.35rem;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.85rem;
+}
+
+/* Guide CTA Banner */
+.guide-cta-banner {
+  background: var(--bg-surface);
+  border: 2px solid var(--text-primary);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-3d-elevated);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.cta-headline {
+  font-size: 1.65rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.cta-sub {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+

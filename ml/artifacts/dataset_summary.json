@@ -1,0 +1,252 @@
+{
+  "total_records": 1460,
+  "features_count": 12,
+  "price_stats": {
+    "mean": 180921.19589041095,
+    "std": 79442.50288288662,
+    "min": 34900.0,
+    "q25": 129975.0,
+    "median": 163000.0,
+    "q75": 214000.0,
+    "max": 755000.0
+  },
+  "neighborhood_averages": [
+    {
+      "Neighborhood": "NridgHt",
+      "sample_count": 77,
+      "avg_price": 316270.6233766234,
+      "median_price": 315000.0
+    },
+    {
+      "Neighborhood": "NoRidge",
+      "sample_count": 41,
+      "avg_price": 335295.31707317074,
+      "median_price": 301500.0
+    },
+    {
+      "Neighborhood": "StoneBr",
+      "sample_count": 25,
+      "avg_price": 310499.0,
+      "median_price": 278000.0
+    },
+    {
+      "Neighborhood": "Timber",
+      "sample_count": 38,
+      "avg_price": 242247.44736842104,
+      "median_price": 228475.0
+    },
+    {
+      "Neighborhood": "Somerst",
+      "sample_count": 86,
+      "avg_price": 225379.83720930232,
+      "median_price": 225500.0
+    },
+    {
+      "Neighborhood": "Veenker",
+      "sample_count": 11,
+      "avg_price": 238772.72727272726,
+      "median_price": 218000.0
+    },
+    {
+      "Neighborhood": "Crawfor",
+      "sample_count": 51,
+      "avg_price": 210624.72549019608,
+      "median_price": 200624.0
+    },
+    {
+      "Neighborhood": "ClearCr",
+      "sample_count": 28,
+      "avg_price": 212565.42857142858,
+      "median_price": 200250.0
+    },
+    {
+      "Neighborhood": "CollgCr",
+      "sample_count": 150,
+      "avg_price": 197965.77333333335,
+      "median_price": 197200.0
+    },
+    {
+      "Neighborhood": "Blmngtn",
+      "sample_count": 17,
+      "avg_price": 194870.88235294117,
+      "median_price": 191000.0
+    },
+    {
+      "Neighborhood": "NWAmes",
+      "sample_count": 73,
+      "avg_price": 189050.0684931507,
+      "median_price": 182900.0
+    },
+    {
+      "Neighborhood": "Gilbert",
+      "sample_count": 79,
+      "avg_price": 192854.50632911394,
+      "median_price": 181000.0
+    },
+    {
+      "Neighborhood": "SawyerW",
+      "sample_count": 59,
+      "avg_price": 186555.7966101695,
+      "median_price": 179900.0
+    },
+    {
+      "Neighborhood": "Mitchel",
+      "sample_count": 49,
+      "avg_price": 156270.1224489796,
+      "median_price": 153500.0
+    },
+    {
+      "Neighborhood": "NPkVill",
+      "sample_count": 9,
+      "avg_price": 142694.44444444444,
+      "median_price": 146000.0
+    },
+    {
+      "Neighborhood": "NAmes",
+      "sample_count": 225,
+      "avg_price": 145847.08,
+      "median_price": 140000.0
+    },
+    {
+      "Neighborhood": "SWISU",
+      "sample_count": 25,
+      "avg_price": 142591.36,
+      "median_price": 139500.0
+    },
+    {
+      "Neighborhood": "Blueste",
+      "sample_count": 2,
+      "avg_price": 137500.0,
+      "median_price": 137500.0
+    },
+    {
+      "Neighborhood": "Sawyer",
+      "sample_count": 74,
+      "avg_price": 136793.13513513515,
+      "median_price": 135000.0
+    },
+    {
+      "Neighborhood": "BrkSide",
+      "sample_count": 58,
+      "avg_price": 124834.05172413793,
+      "median_price": 124300.0
+    },
+    {
+      "Neighborhood": "Edwards",
+      "sample_count": 100,
+      "avg_price": 128219.7,
+      "median_price": 121750.0
+    },
+    {
+      "Neighborhood": "OldTown",
+      "sample_count": 113,
+      "avg_price": 128225.30088495575,
+      "median_price": 119000.0
+    },
+    {
+      "Neighborhood": "BrDale",
+      "sample_count": 16,
+      "avg_price": 104493.75,
+      "median_price": 106000.0
+    },
+    {
+      "Neighborhood": "IDOTRR",
+      "sample_count": 37,
+      "avg_price": 100123.78378378379,
+      "median_price": 103000.0
+    },
+    {
+      "Neighborhood": "MeadowV",
+      "sample_count": 17,
+      "avg_price": 98576.4705882353,
+      "median_price": 88000.0
+    }
+  ],
+  "quality_price_distribution": [
+    {
+      "OverallQual": 1,
+      "sample_count": 2,
+      "avg_price": 50150.0,
+      "median_price": 50150.0
+    },
+    {
+      "OverallQual": 2,
+      "sample_count": 3,
+      "avg_price": 51770.333333333336,
+      "median_price": 60000.0
+    },
+    {
+      "OverallQual": 3,
+      "sample_count": 20,
+      "avg_price": 87473.75,
+      "median_price": 86250.0
+    },
+    {
+      "OverallQual": 4,
+      "sample_count": 116,
+      "avg_price": 108420.6551724138,
+      "median_price": 108000.0
+    },
+    {
+      "OverallQual": 5,
+      "sample_count": 397,
+      "avg_price": 133523.34760705288,
+      "median_price": 133000.0
+    },
+    {
+      "OverallQual": 6,
+      "sample_count": 374,
+      "avg_price": 161603.0347593583,
+      "median_price": 160000.0
+    },
+    {
+      "OverallQual": 7,
+      "sample_count": 319,
+      "avg_price": 207716.42319749217,
+      "median_price": 200141.0
+    },
+    {
+      "OverallQual": 8,
+      "sample_count": 168,
+      "avg_price": 274735.53571428574,
+      "median_price": 269750.0
+    },
+    {
+      "OverallQual": 9,
+      "sample_count": 43,
+      "avg_price": 367513.0232558139,
+      "median_price": 345000.0
+    },
+    {
+      "OverallQual": 10,
+      "sample_count": 18,
+      "avg_price": 438588.3888888889,
+      "median_price": 432390.0
+    }
+  ],
+  "price_histogram": {
+    "bins": [
+      50000,
+      100000,
+      150000,
+      200000,
+      250000,
+      300000,
+      350000,
+      400000,
+      500000,
+      755000
+    ],
+    "counts": [
+      118,
+      496,
+      414,
+      210,
+      102,
+      61,
+      26,
+      19,
+      9
+    ]
+  }
+}

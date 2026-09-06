@@ -1,0 +1,19 @@
+{
+  "include": [
+    ".",
+    "backend",
+    "ml"
+  ],
+  "extraPaths": [
+    ".",
+    "backend",
+    "backend/app",
+    "ml"
+  ],
+  "venvPath": ".",
+  "venv": ".venv",
+  "pythonVersion": "3.10",
+  "pythonPlatform": "Windows",
+  "reportMissingImports": "none",
+  "reportMissingModuleSource": "none"
+}

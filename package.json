@@ -1,0 +1,16 @@
+{
+  "name": "house-price-prediction-root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "House Price Prediction & Explainable AI Dashboard",
+  "scripts": {
+    "dev": "concurrently -k -n \"BACKEND,FRONTEND\" -c \"magenta,cyan\" \".venv\\Scripts\\python.exe backend/run.py\" \"npm --prefix frontend run dev\"",
+    "dev:backend": ".venv\\Scripts\\python.exe backend/run.py",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "preview": "npm --prefix frontend run preview"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}
